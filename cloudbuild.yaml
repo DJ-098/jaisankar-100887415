@@ -1,7 +1,7 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ["build", "-t", "gcr.io/platinum-chain-413720/deenadayalan-100887415:$COMMIT_SHA", "."]
-- name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/platinum-chain-413720/deenadayalan-100887415:$COMMIT_SHA"]
+- name: 'deenadayalan-100887415/cloud-builders/docker'
+  args: ["build", "-t", "gcr.io/platinum-chain-413720/assignment_image:$COMMIT_SHA", "."]
+- name: 'deenadayalan-100887415/cloud-builders/docker'
+  args: ["push", "gcr.io/platinum-chain-413720/assignment_image:$COMMIT_SHA"]
 options:
   logging: 'LEGACY'
