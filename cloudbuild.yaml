@@ -5,11 +5,12 @@ steps:
       - '-t'
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:$COMMIT_SHA'
       - '.'
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:$COMMIT_SHA'
-      
+
 # Deploy Docker container to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
