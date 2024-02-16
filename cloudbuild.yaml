@@ -13,13 +13,13 @@ steps:
     entrypoint: 'bash'
     args:
       - '-c'
-      - 'echo "IMAGE_NAME=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}" > IMAGE_NAME.txt'
+      - 'echo "IMAGE_NAME=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}" > image_name.txt'
 
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - '$(cat IMAGE_NAME.txt)'
+      - '$(cat image_name.txt)'
 
 
   # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
