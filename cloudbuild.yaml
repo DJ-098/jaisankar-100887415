@@ -19,9 +19,6 @@ steps:
     args:
       - '-c'
       - |
-        gcloud projects describe platinum-chain-413720 \
-          --format="value(projectNumber)" \
-          --region="us-central1" \
-          | xargs -I{} gcloud beta builds settings update \
-          --project={} \
-          defaultLogsBucket="gs://jaisanakr-100887415"
+        gcloud beta builds settings update \
+          --default-logs-bucket=gs://jaisanakr-100887415 \
+          --project=platinum-chain-413720
