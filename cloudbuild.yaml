@@ -4,14 +4,14 @@ steps:
     args: 
       - 'build'
       - '-t'
-      - 'northamerica-northeast2-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
+      - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
       - '.'
     
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'northamerica-northeast2-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
+      - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
 
   # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -21,7 +21,7 @@ steps:
       - |
         gcloud projects describe platinum-chain-413720 \
           --format="value(projectNumber)" \
-          --region="northamerica-northeast2" \
+          --region="us-central1" \
           | xargs -I{} gcloud beta builds settings update \
           --project={} \
           defaultLogsBucket="gs://jaisanakr-100887415"
