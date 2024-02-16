@@ -12,4 +12,4 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/deenadayalan-100887415/my-image:$COMMIT_SHA'
 options:
-  defaultLogsBucket: REGIONAL_USER_OWNED_BUCKET
+  logging: REGIONAL
