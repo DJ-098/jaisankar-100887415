@@ -12,4 +12,4 @@ steps:
       - 'push'
       - 'us-central1-docker.pkg.dev/dj098/assignment-image:$COMMIT_SHA'
 options:
-  logging: 'gcsLog'
+  logging: 'LEGACY'
