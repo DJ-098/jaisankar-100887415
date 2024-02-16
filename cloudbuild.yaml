@@ -7,7 +7,7 @@ steps:
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
       - '.'
     
-  # Step 2: Push the Docker image to Artifact Registry
+       # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
