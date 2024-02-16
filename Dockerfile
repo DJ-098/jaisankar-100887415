@@ -4,10 +4,6 @@ FROM node:19.7-alpine
 # Set the default Node environment to production
 ENV NODE_ENV production
 
-
-# Changing ownership of 'labone' directory to the 'node' user and group as indicated
-RUN chown -R node:node /src
-
 # Setting the 'labone' directory as the working directory
 WORKDIR /src
 
