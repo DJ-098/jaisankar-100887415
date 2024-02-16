@@ -1,3 +1,4 @@
+
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
@@ -7,11 +8,19 @@ steps:
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
       - '.'
     
-       # Step 2: Push the Docker image to Artifact Registry
+  # Step 1.5: Export image name as an output variable
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - 'echo "IMAGE_NAME=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}" > IMAGE_NAME.txt'
+
+  # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
+      - '$(cat IMAGE_NAME.txt)'
+
 
   # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   - name: 'gcr.io/cloud-builders/gcloud'
