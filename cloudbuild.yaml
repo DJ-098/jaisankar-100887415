@@ -1,4 +1,3 @@
-
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
@@ -21,13 +20,10 @@ steps:
       - 'push'
       - '$(cat image_name.txt)'
 
-
   # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        gcloud beta builds settings update \
-          --default-logs-bucket=gs://jaisanakr-100887415 \
-          --project=platinum-chain-413720
+        gcloud builds submit . --gcs-log-dir=gs://jaisanakr-100887415/logs/
