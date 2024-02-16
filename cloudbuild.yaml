@@ -1,28 +1,15 @@
 steps:
-  # Step 1: Clone GitHub repository
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/DJ-098/jaisankar-100887415.git', '.']
-
-  # Step 2: Build the Docker image
+  # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: 
+    args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:latest'
+      - 'us-central1-docker.pkg.dev/deenadayalan-100887415/my-image:$COMMIT_SHA'
       - '.'
-
-  # Step 3: Push the Docker image to Artifact Registry
+  # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:latest'
-
-       # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud beta builds settings update \
-          --default-logs-bucket=gs://jaisanakr-100887415 \
-          --project=platinum-chain-413720
+      - 'us-central1-docker.pkg.dev/deenadayalan-100887415/my-image:$COMMIT_SHA'
+options:
+  defaultLogsBucket: REGIONAL_USER_OWNED_BUCKET
