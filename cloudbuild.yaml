@@ -9,24 +9,26 @@ steps:
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:$COMMIT_SHA'
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud run deploy assignment-image \
-          --image=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:$COMMIT_SHA \
-          --platform=managed \
-          --region=us-central1 \
-          --allow-unauthenticated
-  - name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        sed -i 's/<title>.*<\/title>/<title>Assignment 2 – 100887415<\/title>/' src/static/index.html
-        git add src/static/index.html
-        git commit -m "Update index.html title"
-        git push
-options:
-  logging: 'LEGACY'
+      
+# Deploy Docker container to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'assignment-image'
+  - '--image=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:$COMMIT_SHA'
+  - '--region=us-central1'
+  - '--platform=managed'
+  - '--port=3000'
+  - '--allow-unauthenticated'
+
+# Update index.html title
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    echo "<title>Assignment 2 – 100887415</title>" > src/static/index.html
+    git add src/static/index.html
+    git commit -m "Update index.html title"
+    git push origin master
