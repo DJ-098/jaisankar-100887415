@@ -15,5 +15,4 @@ steps:
 
 options:
   # Set the defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
-  logging: 
-    - 'loggingMode=REGIONAL'
+  logging: 'REGIONAL'
