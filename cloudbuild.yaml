@@ -20,7 +20,6 @@ steps:
       - 'push'
       - '$(cat IMAGE_NAME)'
 
-
   # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
