@@ -13,7 +13,7 @@ steps:
     entrypoint: 'bash'
     args:
       - '-c'
-      - 'echo "IMAGE_NAME=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}" > image_name.txt'
+      - 'echo "image_name=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}" > image_name.txt'
 
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
