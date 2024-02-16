@@ -1,5 +1,9 @@
 steps:
-  # Step 1: Build the Docker image
+  # Step 1: Clone GitHub repository
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/DJ-098/jaisankar-100887415.git', '.']
+
+  # Step 2: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'build'
@@ -7,12 +11,11 @@ steps:
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
       - '.'
 
-  # Step 2: Push the Docker image to Artifact Registry
+  # Step 3: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
-
 
   # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
   - name: 'gcr.io/cloud-builders/gcloud'
