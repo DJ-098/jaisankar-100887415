@@ -13,6 +13,15 @@ steps:
       - 'push'
       - 'northamerica-northeast2-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:${SHORT_SHA}'
 
-options:
-  # Set the defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
-  logging: 'REGIONAL'
+  # Step 3: Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud projects describe platinum-chain-413720 \
+          --format="value(projectNumber)" \
+          --region="northamerica-northeast2" \
+          | xargs -I{} gcloud beta builds settings update \
+          --project={} \
+          defaultLogsBucket="gs://jaisanakr-100887415"
