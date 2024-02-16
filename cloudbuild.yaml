@@ -4,12 +4,12 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/deenadayalan-100887415/my-image:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/deenadayalan-100887415/assignment-image:$COMMIT_SHA'
       - '.'
   # Step 2: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/deenadayalan-100887415/my-image:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/deenadayalan-100887415/assignment-image:$COMMIT_SHA'
 options:
   logging: REGIONAL
