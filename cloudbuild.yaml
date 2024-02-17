@@ -1,23 +1,27 @@
 steps:
-  # Build the Docker image Deena
+  # Build the Docker image kevin
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:${COMMIT_SHA}', '.']
   # Push the Docker image to the artifact registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:${COMMIT_SHA}']
- 
-  # Deploy the Docker container to Google Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'sh'
-    args: 
-      - '-c'
-      - |
-        gcloud run deploy assignment-image \
-          --image=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:${COMMIT_SHA} \
-          --platform=managed \
-          --region=us-central1 \
-          --port=3000 \
-          --allow-unauthenticated
+
+  steps:
+  - name: deploy-assignment-image
+    # Use the google cloud-sdk container image
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args:
+      - echo $COMMIT_SHA   # Capture the commit SHA for deployment
+      - gcloud run deploy assignment-image \
+          --image "us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415:$COMMIT_SHA" \
+          --platform managed \
+          --region us-central1 \
+          --port 3000
+    env:
+      - PROJECT_ID=platinum-chain-413720  # Replace with your project ID
+      - REPOSITORY_NAME=deenadayalan-100887415 # Replace with your repository name
+
+
  
 options:
   # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
