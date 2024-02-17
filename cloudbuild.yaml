@@ -12,7 +12,7 @@ steps:
     args: 
       - '-c'
       - |
-        gcloud run deploy assignment_image \
+        gcloud run deploy assignment-image \
           --image=us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:${COMMIT_SHA} \
           --platform=managed \
           --region=us-central1 \
