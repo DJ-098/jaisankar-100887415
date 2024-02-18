@@ -6,7 +6,4 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/nodejs-app:${COMMIT_SHA}']
 
-    options:
-  # Set defaultLogsBucketBehavior to REGIONAL_USER_OWNED_BUCKET
-  # defaultLogsBucket: 'gs://your-build-logs-bucket' # Replace with your build logs bucket
-  defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
+ 
