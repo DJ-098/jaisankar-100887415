@@ -1,7 +1,7 @@
 steps:
   # Build the Docker image kevin
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:${COMMIT_SHA}', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/nodejs-app:${COMMIT_SHA}', '.']
   # Push the Docker image to the artifact registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/assignment_image:${COMMIT_SHA}']
+    args: ['push', 'us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/nodejs-app:${COMMIT_SHA}']
