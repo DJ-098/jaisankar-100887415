@@ -11,8 +11,6 @@ options:
   # defaultLogsBucket: 'gs://your-build-logs-bucket' # Replace with your build logs bucket
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
  
-images:
-# Store images in Google Artifact Registry
-  - us-central1-docker.pkg.dev/platinum-chain-413720/deenadayalan-100887415/deenadayalan-100887415:${COMMIT_SHA}
+
 
  
