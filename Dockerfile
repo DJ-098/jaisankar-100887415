@@ -26,4 +26,4 @@ RUN npm install
 EXPOSE 3000
  
 # Set the default execution command for the container
-CMD ["node", "template/home.html"]
+CMD ["python", "app.py"]
