@@ -12,7 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Authenticate with Snyk
+        run: npx snyk auth ${{ secrets.SNYK_TOKEN }}
+
       - name: Snyk Security Scan
         uses: snyk/actions/node@master
         with:
-          snykToken: ${{ secrets.SNYK_TOKEN }}
+          entryPoint: 'snyk'
+          args: 'test'
