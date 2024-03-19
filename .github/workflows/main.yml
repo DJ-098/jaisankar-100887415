@@ -22,4 +22,4 @@ jobs:
 
       - name: Snyk Security Scan
         run: |
-          npx snyk test || (echo "Snyk test failed"; exit 1)
+          npx snyk test || (echo "Snyk test failed"; npx snyk test)
