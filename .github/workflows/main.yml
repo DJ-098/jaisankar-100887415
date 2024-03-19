@@ -1,0 +1,18 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  snyk_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@v1
+        with:
+          snykToken: ${{ secrets.SNYK_TOKEN }}
