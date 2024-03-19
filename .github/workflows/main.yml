@@ -8,6 +8,8 @@ on:
 jobs:
   snyk_scan:
     runs-on: ubuntu-latest
+    env:
+      DEBUG: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
