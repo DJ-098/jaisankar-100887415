@@ -14,6 +14,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -21,5 +24,4 @@ jobs:
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
       - name: Snyk Security Scan
-        run: |
-          npx snyk test || (echo "Snyk test failed"; npx snyk test)
+        run: snyk test
