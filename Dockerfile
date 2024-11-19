@@ -1,5 +1,5 @@
 # Using node:19.7.0-alpine base image
-FROM node:19.7-alpine
+FROM node:19.8.1-alpine
  
 # Set the default Node environment to production
 ENV NODE_ENV production
